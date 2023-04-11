@@ -1,0 +1,12 @@
+{varType WebChemistry\Eventer\Message\Message[] $messages}
+{varType array $http}
+{varType string $queryName}
+{var bool $used = false}
+
+<script>
+	window.eventerDataLayer = window.eventerDataLayer || [];
+	window.eventer = window.eventer || function () { eventerDataLayer.push(arguments); };
+    {foreach $messages as $message}eventer({$message->getRecipient()}, {$message->getContent()});{/foreach}
+    {foreach $http as $message}{php $used = true}eventer({$message[0]}, {$message[1]});{/foreach}
+	{if $used}eventer('internal', ['removeQuery', {$queryName}]){/if}
+</script>
