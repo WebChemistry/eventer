@@ -3,7 +3,7 @@
 {varType string $queryName}
 {var bool $used = false}
 
-<script>
+<script n:nonce>
 	window.eventerDataLayer = window.eventerDataLayer || [];
 	window.eventer = window.eventer || function () { eventerDataLayer.push(arguments); };
     {foreach $messages as $message}eventer({$message->getRecipient()}, {$message->getContent()});{/foreach}
